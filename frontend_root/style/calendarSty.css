@@ -1,0 +1,509 @@
+/* ============================================================
+   NRUTYA CLUB — GLOBAL STYLES & THEME VARIABLES
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Rock+Salt&display=swap');
+
+:root {
+  --bg-dark: #050206;
+  --magenta-glow: #bd2b8f;
+  --purple-deep: #43103c;
+  --navbar-bg: rgba(5, 2, 6, 0.8);
+  --dropdown-bg: rgba(18, 8, 20, 0.95);
+  --text-primary: #ffffff;
+  --text-secondary: #e2b6db;
+  --accent-magenta: #ff47cc;
+  --border-line: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(20, 9, 22, 0.55);
+  
+  /* Category Glowing Color Mapping */
+  --accent-workshop: #ffb347;       
+  --accent-competition: #ff3366;    
+  --accent-other: #00e5ff;          
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* --- AMBIENT SMOKE BACKGROUND EFFECTS --- */
+.smoke-bg-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 50%, var(--purple-deep) 0%, var(--bg-dark) 70%);
+}
+
+.smoke-cloud {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+
+.cloud-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--magenta-glow) 0%, transparent 70%);
+  top: 10%;
+  left: -10%;
+  animation: driftOne 22s infinite alternate ease-in-out;
+}
+
+.cloud-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #831a70 0%, transparent 70%);
+  bottom: -5%;
+  left: 15%;
+  animation: driftTwo 28s infinite alternate ease-in-out;
+}
+
+.cloud-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--purple-deep) 0%, transparent 70%);
+  top: 30%;
+  right: 10%;
+  opacity: 0.25;
+  animation: driftOne 18s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes driftOne {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(80px, 40px) scale(1.15); }
+}
+
+@keyframes driftTwo {
+  0% { transform: translate(0, 0) scale(1.2); opacity: 0.2; }
+  100% { transform: translate(-60px, -50px) scale(0.9); opacity: 0.45; }
+}
+
+
+/* ============================================================
+   CALENDAR MAIN CONTENT AREA LAYOUT
+   ============================================================ */
+.calendar-page { 
+  flex: 1; 
+  width: 100%; 
+  max-width: 1080px; 
+  margin: 0 auto; 
+  padding: 30px 24px 70px; 
+}
+
+.page-intro { 
+  text-align: center; 
+  margin-bottom: 30px; 
+}
+
+.page-title {
+  font-family: "Rubik Microbe", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2.3rem, 6vw, 4.2rem); 
+  letter-spacing: 2px;
+  color: #ffffff !important; 
+  margin-bottom: 12px;
+}
+
+.page-sub { 
+  color: var(--text-secondary); 
+  font-size: 0.95rem; 
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.9; 
+}
+
+/* Glowing Indicator Legend Styling */
+.legend { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 20px; 
+  margin-bottom: 28px; 
+}
+
+.legend-item { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+  font-size: 0.85rem; 
+  color: var(--text-secondary); 
+}
+
+.dot { 
+  width: 11px; 
+  height: 11px; 
+  border-radius: 50%; 
+  display: inline-block; 
+}
+
+.dot-workshop { background: var(--accent-workshop); box-shadow: 0 0 10px var(--accent-workshop); }
+.dot-competition { background: var(--accent-competition); box-shadow: 0 0 10px var(--accent-competition); }
+.dot-other { background: var(--accent-other); box-shadow: 0 0 10px var(--accent-other); }
+.dot-today { background: #ffffff; box-shadow: 0 0 10px #ffffff; }
+
+/* Shell Frame Structure */
+.calendar-shell {
+  background: var(--card-bg);
+  border: 1px solid var(--border-line);
+  border-radius: 16px; 
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+}
+
+.calendar-toolbar { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 16px; 
+  margin-bottom: 22px; 
+  position: relative; 
+}
+
+.month-label { 
+  font-family: "Fredericka the Great", serif; 
+  font-weight: 400; 
+  font-size: 1.6rem; 
+  letter-spacing: 2px; 
+  min-width: 250px; 
+  text-align: center; 
+}
+
+.nav-btn {
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  cursor: pointer;
+  background: rgba(255, 71, 204, 0.06); 
+  border: 1px solid var(--border-line);
+  color: var(--text-primary); 
+  font-size: 0.95rem; 
+  transition: all .25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn:hover { 
+  background: var(--accent-magenta); 
+  color: var(--bg-dark); 
+  box-shadow: 0 0 14px var(--accent-magenta); 
+}
+
+.today-btn {
+  position: absolute; 
+  right: 0; 
+  top: 50%; 
+  transform: translateY(-50%);
+  background: transparent; 
+  border: 1px solid var(--border-line); 
+  color: var(--text-secondary);
+  font-size: 0.75rem; 
+  font-weight: 600; 
+  letter-spacing: .5px; 
+  padding: 8px 14px;
+  border-radius: 20px; 
+  cursor: pointer; 
+  transition: all .25s ease;
+}
+
+.today-btn:hover { 
+  border-color: var(--accent-magenta); 
+  color: var(--accent-magenta); 
+}
+
+.weekday-row { 
+  display: grid; 
+  grid-template-columns: repeat(7, 1fr); 
+  gap: 8px; 
+  margin-bottom: 12px; 
+}
+
+.weekday-row span { 
+  text-align: center; 
+  font-size: 0.75rem; 
+  font-weight: 700; 
+  letter-spacing: 1px; 
+  color: #a395a1; 
+  text-transform: uppercase; 
+}
+
+.calendar-grid { 
+  display: grid; 
+  grid-template-columns: repeat(7, 1fr); 
+  gap: 8px; 
+}
+
+.day-cell {
+  position: relative; 
+  aspect-ratio: 1 / 1; 
+  border-radius: 10px;
+  display: flex; 
+  align-items: flex-start; 
+  justify-content: flex-end;
+  padding: 8px; 
+  font-size: 0.95rem; 
+  font-weight: 500;
+  background: rgba(255,255,255,.02); 
+  border: 1px solid transparent;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.day-cell.empty { background: transparent; }
+.day-cell.has-event { cursor: pointer; }
+
+/* Grid Interaction Glow Highlights */
+.day-cell.type-workshop { background: rgba(255, 179, 71, 0.08); border-color: rgba(255, 179, 71, 0.4); }
+.day-cell.type-workshop:hover {
+  transform: translateY(-3px) scale(1.03); background: rgba(255, 179, 71, 0.18); box-shadow: 0 6px 20px rgba(255, 179, 71, 0.35);
+}
+
+.day-cell.type-competition { background: rgba(255, 51, 102, 0.06); border-color: rgba(255, 51, 102, 0.4); }
+.day-cell.type-competition:hover {
+  transform: translateY(-3px) scale(1.03); background: rgba(255, 51, 102, 0.15); box-shadow: 0 6px 20px rgba(255, 51, 102, 0.35);
+}
+
+.day-cell.type-other { background: rgba(0, 229, 255, 0.06); border-color: rgba(0, 229, 255, 0.4); }
+.day-cell.type-other:hover {
+  transform: translateY(-3px) scale(1.03); background: rgba(0, 229, 255, 0.15); box-shadow: 0 6px 20px rgba(0, 229, 255, 0.35);
+}
+
+.day-cell.today { 
+  outline: 2px solid #ffffff; 
+  outline-offset: -2px; 
+}
+
+.day-markers { 
+  position: absolute; 
+  left: 8px; 
+  bottom: 8px; 
+  display: flex; 
+  gap: 4px; 
+}
+
+.marker { width: 7px; height: 7px; border-radius: 50%; }
+.marker.workshop { background: var(--accent-workshop); box-shadow: 0 0 6px var(--accent-workshop); }
+.marker.competition { background: var(--accent-competition); box-shadow: 0 0 6px var(--accent-competition); }
+.marker.other { background: var(--accent-other); box-shadow: 0 0 6px var(--accent-other); }
+
+/* ============================================================
+   HOVER POPUP TEMPLATE LAYOUT
+   ============================================================ */
+.event-popup {
+  position: absolute; 
+  z-index: 2000; 
+  width: 280px;
+  background: var(--dropdown-bg);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px; 
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+  color: var(--text-primary);
+  opacity: 0; 
+  visibility: hidden; 
+  transform: translateY(8px) scale(.96);
+  transition: opacity .15s ease, transform .15s ease, visibility .15s;
+  text-decoration: none;
+}
+
+.event-popup.visible { 
+  opacity: 1; 
+  visibility: visible; 
+  transform: translateY(0) scale(1); 
+}
+
+.popup-img-wrap { 
+  position: relative; 
+  width: 100%; 
+  height: 150px; 
+  overflow: hidden; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-img-wrap img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+}
+
+/* Fallback styles when the image link is missing */
+.popup-img-wrap.fallback-workshop { background: var(--accent-workshop); box-shadow: inset 0 0 40px rgba(0,0,0,0.6); }
+.popup-img-wrap.fallback-competition { background: var(--accent-competition); box-shadow: inset 0 0 40px rgba(0,0,0,0.6); }
+.popup-img-wrap.fallback-other { background: var(--accent-other); box-shadow: inset 0 0 40px rgba(0,0,0,0.6); }
+
+/* Decorative Text Badge to identify fallback card types visually */
+.popup-img-wrap.has-fallback::after {
+  content: "NRUTYA EVENT";
+  font-family: "Fredericka the Great", serif;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.popup-badge {
+  position: absolute; top: 10px; left: 10px; z-index: 2; font-size: .6rem; font-weight: 700; 
+  letter-spacing: 1px; text-transform: uppercase; padding: 4px 9px; border-radius: 20px; color: var(--bg-dark);
+}
+
+.popup-body { padding: 15px; }
+.popup-title { font-size: 1rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+.popup-date { font-size: .75rem; font-weight: 600; margin-bottom: 8px; color: var(--text-secondary); }
+.popup-desc { font-size: .8rem; line-height: 1.45; color: #a395a1; }
+
+/* ============================================================
+   CURRENT MONTH FEATURED SECTION 
+   ============================================================ */
+.upcoming { margin-top: 44px; }
+
+.upcoming-title { 
+  font-family: "Fredericka the Great", serif; 
+  font-weight: 400; 
+  font-size: 1.6rem; 
+  letter-spacing: 2px; 
+  margin-bottom: 22px; 
+  text-align: center; 
+  text-transform: uppercase;
+}
+
+.upcoming-title span { color: var(--accent-magenta); }
+
+.upcoming-list { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); 
+  gap: 20px; 
+}
+
+.up-card {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+  background: rgba(22, 10, 24, 0.6); 
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px; 
+  padding: 12px; 
+  transition: all .25s ease;
+  text-decoration: none;
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.up-card:hover { 
+  transform: translateY(-4px); 
+  background: rgba(38, 16, 42, 0.75);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.up-card.card-workshop:hover { border-color: var(--accent-workshop); }
+.up-card.card-competition:hover { border-color: var(--accent-competition); }
+.up-card.card-other:hover { border-color: var(--accent-other); }
+
+.up-img-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0; 
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.up-thumb { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+}
+
+/* Fallbacks for Featured list thumbnail containers */
+.up-img-container.fallback-workshop { background: var(--accent-workshop); box-shadow: inset 0 0 15px rgba(0,0,0,0.4); }
+.up-img-container.fallback-competition { background: var(--accent-competition); box-shadow: inset 0 0 15px rgba(0,0,0,0.4); }
+.up-img-container.fallback-other { background: var(--accent-other); box-shadow: inset 0 0 15px rgba(0,0,0,0.4); }
+
+.up-img-container.has-fallback::after {
+  content: "✦";
+  font-size: 1.8rem;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+
+.up-meta { 
+  flex: 1; 
+  padding-left: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.up-meta h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; line-height: 1.25; color: var(--text-primary); }
+.up-meta .up-date { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 6px; }
+
+.up-tag { 
+  font-size: .6rem; 
+  font-weight: 700; 
+  letter-spacing: .5px; 
+  text-transform: uppercase; 
+  padding: 2px 8px; 
+  border-radius: 12px; 
+  display: inline-block; 
+  align-self: flex-start;
+}
+.up-tag.tag-workshop { background: rgba(255,179,71,.15); color: var(--accent-workshop); }
+.up-tag.tag-competition { background: rgba(255,51,102,.15); color: var(--accent-competition); }
+.up-tag.tag-other { background: rgba(0,229,255,.15); color: var(--accent-other); }
+
+.up-empty { grid-column: 1/-1; text-align: center; color: #a395a1; font-size: 0.9rem; padding: 30px; }
+
+
+/* ============================================================
+   RESPONSIVE DESIGN VIEWPORTS
+   ============================================================ */
+@media (max-width: 768px) {
+  header { padding: 15px 20px; }
+  .calendar-page { padding: 30px 14px 50px; }
+  .calendar-shell { padding: 16px; }
+  .calendar-grid, .weekday-row { gap: 6px; }
+  .day-cell { padding: 4px; font-size: 0.8rem; border-radius: 6px; }
+  .month-label { font-size: 1.25rem; min-width: 160px; }
+  .calendar-toolbar { flex-wrap: wrap; gap: 12px; }
+  .today-btn { position: static; transform: none; margin-left: auto; }
+  .event-popup { width: 240px; }
+  .popup-img-wrap { height: 110px; }
+  .upcoming-list { grid-template-columns: 1fr; }
+  
+  .nrutya-footer { padding: 25px 0 15px 0; }
+  .footer-container { padding: 0 24px; }
+  .footer-top-row { flex-direction: column; gap: 20px; align-items: flex-start; padding-bottom: 20px; }
+  .footer-socials { align-items: flex-start; }
+  .footer-bottom-row { justify-content: center; }
+  .footer-copyright { text-align: center; }
+}
+
+@media (max-width: 420px) {
+  .weekday-row span { font-size: 0.65rem; }
+  .day-cell { padding: 2px; font-size: 0.7rem; }
+}

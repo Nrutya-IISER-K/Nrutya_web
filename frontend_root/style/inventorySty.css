@@ -1,0 +1,243 @@
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Rock+Salt&display=swap');
+
+        :root {
+            --bg-dark: #050206;
+            --magenta-glow: #bd2b8f;
+            --purple-deep: #43103c;
+            --navbar-bg: rgba(5, 2, 6, 0.8);
+            --dropdown-bg: rgba(18, 8, 20, 0.95);
+            --text-primary: #ffffff;
+            --text-secondary: #e2b6db;
+            --accent-magenta: #ff47cc;
+            --border-line: rgba(255, 255, 255, 0.1);
+            
+            /* Footer Context Variables */
+            --bg-color: #170414;        
+            --text-main: #ffffff;       
+            --text-muted: #a395a1;      
+            --accent-pink: #ff2a85;     
+            --border-color: #2b1127;    
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- AMBIENT SMOKE BACKGROUND EFFECTS --- */
+        .smoke-bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 30% 50%, var(--purple-deep) 0%, var(--bg-dark) 70%);
+        }
+
+        .smoke-cloud {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            mix-blend-mode: screen;
+        }
+
+        .cloud-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--magenta-glow) 0%, transparent 70%);
+            top: 10%;
+            left: -10%;
+            animation: driftOne 22s infinite alternate ease-in-out;
+        }
+
+        .cloud-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #831a70 0%, transparent 70%);
+            bottom: -5%;
+            left: 15%;
+            animation: driftTwo 28s infinite alternate ease-in-out;
+        }
+
+        .cloud-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--purple-deep) 0%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            opacity: 0.25;
+            animation: driftOne 18s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes driftOne {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(80px, 40px) scale(1.15); }
+        }
+
+        @keyframes driftTwo {
+            0% { transform: translate(0, 0) scale(1.2); opacity: 0.2; }
+            100% { transform: translate(-60px, -50px) scale(0.9); opacity: 0.45; }
+        }
+
+        /* --- CUSTOM INVENTORY LAYOUT STYLES --- */
+        .inventory-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 30px;
+            text-align: center;
+            flex: 1;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .inventory-page-title {
+            font-family: "Rubik Microbe", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            font-size: clamp(2.3rem, 6vw, 4.2rem); 
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 71, 204, 0.2);
+        }
+
+        .inventory-page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin: 0 auto 50px auto;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.85;
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            text-align: left;
+        }
+
+        .inventory-category-card {
+            background: rgba(67, 16, 60, 0.15);
+            border: 1px solid rgba(189, 43, 143, 0.2);
+            border-radius: 14px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        .inventory-category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-magenta);
+            box-shadow: 0 15px 35px rgba(189, 43, 143, 0.35);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .category-header i {
+            color: var(--accent-magenta);
+            font-size: 1.2rem;
+        }
+
+        .inventory-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .inventory-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.95rem;
+            color: #e0cfe2;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .inventory-item:hover {
+            background: rgba(255, 71, 204, 0.08);
+            border-color: rgba(255, 71, 204, 0.25);
+            color: #fff;
+        }
+
+        .item-bullet {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-magenta);
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.8;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px var(--accent-magenta);
+        }
+
+        .item-name {
+            flex: 1;
+            line-height: 1.4;
+        }
+
+
+        /* --- RESPONSIVENESS MECHANISMS --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 24px;
+            }
+            .logo-text h1 {
+                font-size: 0.95rem;
+            }
+            .nrutya-footer {
+                padding: 25px 0 15px 0;
+            }
+            .footer-container {
+                padding: 0 24px;
+            }
+            .footer-top-row {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+                padding-bottom: 20px;
+            }
+            .footer-socials {
+                align-items: flex-start;
+            }
+            .footer-bottom-row {
+                justify-content: center;
+            }
+            .footer-copyright {
+                text-align: center;
+            }
+        }

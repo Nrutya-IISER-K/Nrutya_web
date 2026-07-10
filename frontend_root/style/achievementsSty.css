@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Rock+Salt&display=swap');
+
+        :root {
+            --bg-dark: #050206;
+            --magenta-glow: #bd2b8f;
+            --purple-deep: #43103c;
+            --navbar-bg: rgba(5, 2, 6, 0.8);
+            --dropdown-bg: rgba(18, 8, 20, 0.95);
+            --text-primary: #ffffff;
+            --text-secondary: #e2b6db;
+            --accent-magenta: #ff47cc;
+            --border-line: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- AMBIENT SMOKE BACKGROUND EFFECTS --- */
+        .smoke-bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 30% 50%, var(--purple-deep) 0%, var(--bg-dark) 70%);
+        }
+
+        .smoke-cloud {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            mix-blend-mode: screen;
+        }
+
+        .cloud-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--magenta-glow) 0%, transparent 70%);
+            top: 10%;
+            left: -10%;
+            animation: driftOne 22s infinite alternate ease-in-out;
+        }
+
+        .cloud-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #831a70 0%, transparent 70%);
+            bottom: -5%;
+            left: 15%;
+            animation: driftTwo 28s infinite alternate ease-in-out;
+        }
+
+        .cloud-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--purple-deep) 0%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            opacity: 0.25;
+            animation: driftOne 18s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes driftOne {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(80px, 40px) scale(1.15); }
+        }
+
+        @keyframes driftTwo {
+            0% { transform: translate(0, 0) scale(1.2); opacity: 0.2; }
+            100% { transform: translate(-60px, -50px) scale(0.9); opacity: 0.45; }
+        }
+
+        
+
+        /* --- ACHIEVEMENTS MAIN LAYOUT SECTION --- */
+        .achievements-section {
+            flex: 1;
+            padding: 30px 40px;
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto;
+            z-index: 10;
+        }
+
+        .achievements-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .achievements-header h2 {
+            font-family: "Rubik Microbe", system-ui;
+            font-weight: 350;
+            font-style: normal;
+            font-size: 4em;
+            letter-spacing: 4px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 71, 204, 0.4);
+        }
+
+        .achievements-header p {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            letter-spacing: 1.5px;
+        }
+
+        /* Responsive Grid Configuration */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            justify-content: center;
+        }
+
+        /* Card Styling matching achieve_layout.jpeg layout structures */
+        .achievement-card {
+            background: rgba(23, 4, 20, 0.6);
+            border: 1px solid var(--border-line);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 71, 204, 0.5);
+            box-shadow: 0 12px 30px rgba(189, 43, 143, 0.25);
+        }
+
+        /* Automatic slideshow aspect container */
+        .card-image-slider {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border-line);
+        }
+
+        .card-image-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+
+        .card-image-slider img.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        /* Text Content container layout specifications */
+        .card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-content h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+            border-left: 3px solid var(--accent-magenta);
+            padding-left: 10px;
+        }
+
+        /* Adaptive Details component (Supports lists, items, paragraphs, icons/emojis inline smoothly) */
+        .card-details {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            flex-grow: 1;
+        }
+
+        .card-details p {
+            margin-bottom: 12px;
+        }
+
+        .card-details p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Standardized styles when bullets/pointers are structuralized */
+        .card-details ul, .card-details ol {
+            padding-left: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            list-style-type: none; /* Let icons or simple adjustments override */
+        }
+
+        .card-details ul li {
+            position: relative;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        
+        /* Clean default pointer if raw lists are rendered */
+        .card-details ul:not(.custom-icons-list) li::before {
+            content: "•";
+            color: var(--accent-magenta);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .card-details i {
+            color: var(--accent-magenta);
+            margin: 0 4px;
+        }
+
+        /* --- FOOTER STRUCTURE --- */
+        .nrutya-footer {
+            --bg-color: #170414;        
+            --text-main: #ffffff;       
+            --text-muted: #a395a1;      
+            --accent-pink: #ff2a85;     
+            --border-color: #2b1127;    
+            
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 30px 0 15px 0;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: auto; /* Pushes footer neatly to bottom layout */
+        }
+
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 992px) {
+            .achievements-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            .achievements-section {
+                padding: 40px 20px;
+            }
+            .achievements-header h2 {
+                font-size: 2.1rem;
+            }
+            .achievements-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .nrutya-footer {
+                padding: 25px 0 15px 0;
+            }
+            .footer-container {
+                padding: 0 24px;
+            }
+            .footer-top-row {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+                padding-bottom: 20px;
+            }
+            .footer-socials {
+                align-items: flex-start;
+            }
+            .footer-bottom-row {
+                justify-content: center;
+            }
+            .footer-copyright {
+                text-align: center;
+            }
+        }

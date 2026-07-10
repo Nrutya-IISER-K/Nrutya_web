@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Rock+Salt&display=swap');
+
+:root {
+    --bg-dark: #050206;
+    --magenta-glow: #bd2b8f;
+    --purple-deep: #43103c;
+    --navbar-bg: rgba(5, 2, 6, 0.8);
+    --dropdown-bg: rgba(18, 8, 20, 0.95);
+    --text-primary: #ffffff;
+    --text-secondary: #e2b6db;
+    --accent-magenta: #ff47cc;
+    --border-line: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* --- AMBIENT SMOKE BACKGROUND EFFECTS --- */
+.smoke-bg-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at 30% 50%, var(--purple-deep) 0%, var(--bg-dark) 70%);
+}
+
+.smoke-cloud {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    mix-blend-mode: screen;
+}
+
+.cloud-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--magenta-glow) 0%, transparent 70%);
+    top: 10%;
+    left: -10%;
+    animation: driftOne 22s infinite alternate ease-in-out;
+}
+
+.cloud-2 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #831a70 0%, transparent 70%);
+    bottom: -5%;
+    left: 15%;
+    animation: driftTwo 28s infinite alternate ease-in-out;
+}
+
+.cloud-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--purple-deep) 0%, transparent 70%);
+    top: 30%;
+    right: 10%;
+    opacity: 0.25;
+    animation: driftOne 18s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes driftOne {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(80px, 40px) scale(1.15); }
+}
+
+@keyframes driftTwo {
+    0% { transform: translate(0, 0) scale(1.2); opacity: 0.2; }
+    100% { transform: translate(-60px, -50px) scale(0.9); opacity: 0.45; }
+}
+
+.nrutya-footer {
+  --bg-color: #170414;        
+  --text-main: #ffffff;       
+  --text-muted: #a395a1;      
+  --accent-pink: #ff2a85;     
+  --border-color: #2b1127;    
+  
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding: 30px 0 15px 0; /* Reduced padding to make footer overall smaller */
+  border-top: 1px solid var(--border-color);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nrutya-footer * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.footer-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 20px; /* Reduced gap between info and copyright line */
+}
+
+.footer-info {
+  flex: 1;
+  max-width: 600px;
+}
+
+.footer-title {
+  font-family: "Fredericka the Great", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.4rem; /* Scaled down header size */
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.footer-description {
+  font-size: 0.85rem; /* Made text description slightly smaller */
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.footer-socials {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.socials-label {
+  font-size: 0.95rem; /* Slightly tighter text sizing */
+  color: var(--text-main);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.social-icons {
+   display: flex;
+  gap: 16px;
+}
+
+.social-icon-link {
+  color: var(--text-muted);
+  width: 20px; /* Snugger icon layout dimensions */
+  height: 20px;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.social-icon-link:hover {
+  color: var(--accent-magenta);
+  transform: scale(1.25);
+ filter: drop-shadow(0 0 8px var(--accent-magenta));
+}
+
+/* Brought copyright statement upside by tightening border padding */
+.footer-bottom-row {
+  border-top: 1px solid var(--border-color);
+  padding-top: 12px; 
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 10%; 
+}
+
+.footer-copyright {
+  font-size: 0.78rem; /* Clean, compact disclaimer layout sizing */
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-align: right;
+}
+@media screen and (max-width: 768px) {
+     .nrutya-footer { padding: 25px 0 15px 0; }
+            .footer-container { padding: 0 24px; }
+            .footer-top-row { flex-direction: column; gap: 20px; align-items: flex-start; }
+            .footer-socials { align-items: flex-start; }
+            .footer-bottom-row { justify-content: center; }
+            .footer-copyright { text-align: center; }
+        }

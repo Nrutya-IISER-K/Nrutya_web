@@ -1,0 +1,299 @@
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Rock+Salt&display=swap');
+
+    :root {
+        --bg-dark: #050206;
+        --magenta-glow: #bd2b8f;
+        --purple-deep: #43103c;
+        --navbar-bg: rgba(5, 2, 6, 0.8);
+        --dropdown-bg: rgba(18, 8, 20, 0.95);
+        --text-primary: #ffffff;
+        --text-secondary: #e2b6db;
+        --accent-magenta: #ff47cc;
+        --border-line: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* --- AMBIENT SMOKE BACKGROUND EFFECTS --- */
+    .smoke-bg-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        overflow: hidden;
+        background: radial-gradient(circle at 30% 50%, var(--purple-deep) 0%, var(--bg-dark) 70%);
+    }
+
+    .smoke-cloud {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.35;
+        mix-blend-mode: screen;
+    }
+
+    .cloud-1 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, var(--magenta-glow) 0%, transparent 70%);
+        top: 10%;
+        left: -10%;
+        animation: driftOne 22s infinite alternate ease-in-out;
+    }
+
+    .cloud-2 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, #831a70 0%, transparent 70%);
+        bottom: -5%;
+        left: 15%;
+        animation: driftTwo 28s infinite alternate ease-in-out;
+    }
+
+    .cloud-3 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, var(--purple-deep) 0%, transparent 70%);
+        top: 30%;
+        right: 10%;
+        opacity: 0.25;
+        animation: driftOne 18s infinite alternate-reverse ease-in-out;
+    }
+
+    @keyframes driftOne {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(80px, 40px) scale(1.15); }
+    }
+
+    @keyframes driftTwo {
+        0% { transform: translate(0, 0) scale(1.2); opacity: 0.2; }
+        100% { transform: translate(-60px, -50px) scale(0.9); opacity: 0.45; }
+    }
+
+   
+
+    /* --- MAIN CONTENT & PEOPLE LAYOUT SECTION --- */
+    main {
+        flex: 1;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        z-index: 10;
+    }
+
+    .people-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .people-header h2 {
+        font-family: "Rubik Microbe", system-ui;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 5rem;
+        letter-spacing: 6px;
+        color: var(--text-primary);
+        text-shadow: 0 0 20px rgba(255, 71, 204, 0.4);
+        margin-bottom: 5px;
+    }
+
+    .people-header p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        font-weight: 300;
+        letter-spacing: 2px;
+    }
+
+    /* Tabs Styling from layout diagram */
+    .tabs-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 50px;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 12px 30px;
+        border-radius: 4px;
+        color: var(--text-secondary);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        outline: none;
+    }
+
+    /* Hover Glow Effect */
+    .tab-btn:hover {
+        color: var(--text-primary);
+        border-color: var(--accent-magenta);
+        box-shadow: 0 0 15px rgba(255, 71, 204, 0.6), inset 0 0 5px rgba(255, 71, 204, 0.4);
+        transform: translateY(-2px);
+    }
+
+    /* Active Selected State */
+    .tab-btn.active {
+        color: var(--bg-dark);
+        background-color: var(--accent-magenta);
+        border-color: var(--accent-magenta);
+        box-shadow: 0 0 25px rgba(255, 71, 204, 0.8);
+        transform: translateY(0);
+    }
+
+    /* Grid layout matching design boxes */
+    .cards-viewport {
+        width: 100%;
+        position: relative;
+        min-height: 350px;
+    }
+
+    .cards-section {
+        display: none;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        width: 100%;
+        animation: sectionFadeIn 0.4s ease-in-out forwards;
+    }
+
+    .cards-section.active {
+        display: grid;
+    }
+
+    @keyframes sectionFadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Individual Profile Card Box Layout from sketch */
+    .profile-card {
+        background: rgba(23, 4, 20, 0.6);
+        border: 1px solid var(--border-line);
+        border-radius: 8px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        backdrop-filter: blur(8px);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .profile-card:hover {
+        border-color: rgba(255, 71, 204, 0.4);
+        box-shadow: 0 8px 25px rgba(67, 16, 60, 0.5);
+        transform: scale(1.02);
+    }
+
+    .profile-photo-wrapper {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        border: 2px solid var(--text-secondary);
+        overflow: hidden;
+        background: #120814;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        transition: border-color 0.3s ease;
+    }
+
+    .profile-card:hover .profile-photo-wrapper {
+        border-color: var(--accent-magenta);
+    }
+
+    .profile-photo-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profile-photo-wrapper i {
+        font-size: 2.2rem;
+        color: rgba(255, 255, 255, 0.2);
+    }
+
+    .profile-details {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+    }
+
+    .profile-details .field-line {
+        line-height: 1.4;
+    }
+
+    .profile-details .label {
+        font-weight: 400;
+        opacity: 0.7;
+    }
+
+    .profile-details .val {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .profile-details .val.name-field {
+        font-size: 1.15rem;
+        color: var(--accent-magenta);
+        letter-spacing: 0.5px;
+    }
+
+
+    @media (max-width: 768px) {
+        .nrutya-footer {
+            padding: 25px 0 15px 0;
+        }
+        .footer-container {
+            padding: 0 24px;
+        }
+        .footer-top-row {
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+            padding-bottom: 20px;
+        }
+        .footer-socials {
+            align-items: flex-start;
+        }
+        .footer-bottom-row {
+            justify-content: center;
+        }
+        .footer-copyright {
+            text-align: center;
+        }
+        .people-header h2 {
+            font-size: 2.8rem;
+        }
+    }

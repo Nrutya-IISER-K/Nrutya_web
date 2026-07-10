@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Events | Nrutya Club IISER Kolkata</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Fredericka+the+Great&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=Patua+One&family=Rubik+Doodle+Triangles&family=Rubik+Microbe&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/footer.css">
+    <link rel="stylesheet" href="../style/eventSty.css">
+</head>
+<body>
+    
+    <div class="smoke-bg-wrapper">
+            <div class="smoke-cloud cloud-1"></div>
+            <div class="smoke-cloud cloud-2"></div>
+            <div class="smoke-cloud cloud-3"></div>
+        </div>
+
+        <header>
+            <div class="logo-area">
+                <div class="logo-container">
+                    <img src="../images/logo_fin.png" alt="Nrutya Club Logo" id="header-logo-target" onerror="this.style.display='none';">
+                    <i class="fa-solid fa-gandhabba fallback-icon"></i> 
+                </div>
+                <div class="logo-text">
+                    <h1>Nrutya</h1>
+                    <p>CLUB</p>
+                    <span>IISER KOLKATA</span>
+                </div>
+            </div>
+            
+            <nav>
+                <div class="nav-right-wrapper">
+                    <a href="../pages/contact.html" class="btn-get-in-touch">Get in Touch</a>
+                    <div class="more-menu-dropdown">
+                        <button class="menu-dots-btn" aria-label="Open Navigation Menu">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <ul class="dropdown-content">
+                        <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li><a href="../pages/event.html"class="active"><i class="fa-solid fa-wand-magic-sparkles"></i> Events</a></li>
+                        <li><a href="../pages/calendar.html"><i class="fa-solid fa-calendar-days"></i> Event Calendar</a></li>
+                        <li><a href="../pages/gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+                        <li><a href="../pages/performances.html"><i class="fa-solid fa-play"></i> Performances</a></li>
+                        <li><a href="../pages/people.html"><i class="fa-solid fa-users"></i> People</a></li>
+                        <li><a href="../pages/inventory.html" ><i class="fa-regular fa-box-open"></i> Inventory</a></li>
+                        <li><a href="../pages/about.html"><i class="fa-solid fa-circle-info"></i> About us</a></li>
+                        <li><a href="../pages/announcements.html"><i class="fa-solid fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="../pages/achievements.html"><i class="fa-solid fa-trophy"></i> Achievements</a></li>
+                        
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+    <div class="events-container">
+        <h2 class="events-page-title">CLUB EVENTS</h2>
+        <p class="events-page-subtitle">Stay updated with workshops, competitions, showcases and practice sessions</p>
+
+        <div class="tabs-pill-wrapper">
+            <div class="tabs-flex-box">
+                <div class="sliding-indicator-pill" id="indicatorSlider"></div>
+                <button class="category-tab-btn active" data-index="0" onclick="triggerTabShift(this, 'upcoming')">UPCOMING</button>
+                <button class="category-tab-btn" data-index="1" onclick="triggerTabShift(this, 'current')">CURRENT</button>
+                <button class="category-tab-btn" data-index="2" onclick="triggerTabShift(this, 'past')">PAST</button>
+            </div>
+        </div>
+
+        <div class="events-empty-view" id="emptyStateBox">
+            <svg class="clock-svg-icon" id="clockIconSvg" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+            </svg>
+            <p id="emptyStateText">Stay Tuned for Future Events</p>
+        </div>
+
+        <div class="events-vertical-grid" id="eventsVerticalGrid"></div>
+    </div>
+
+    <div class="pop-up-modal-backdrop" id="popupModalBackdrop">
+        <div class="pop-up-modal-shell">
+            <button class="pop-up-modal-dismiss-btn" onclick="dismissModalWindow()">&times;</button>
+            
+            <div class="pop-up-media-gallery-sidebar">
+                <div class="popup-carousel-window" id="popupCarouselWindow"></div>
+
+                <svg class="gallery-icon-svg" id="modalFallbackIcon" viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                </svg>
+
+                
+            </div>
+
+            <div class="pop-up-modal-content-details">
+                <h3 class="pop-up-modal-headline" id="modalHeadline">Event Name</h3>
+                
+                <div class="pop-up-meta-parameters-card">
+                    <div class="pop-up-meta-row">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span id="modalMetaDate">Date slot info</span>
+                    </div>
+                    <div class="pop-up-meta-row">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span id="modalMetaVenue">Venue location string</span>
+                    </div>
+                </div>
+
+                <div class="pop-up-segment-header">Event Details</div>
+                <p class="pop-up-editorial-description" id="modalEditorialDesc">Full editorial text descriptions layout field block details context data blocks.</p>
+                
+                <div class="pop-up-action-buttons-grid">
+                    <button class="pop-up-action-btn" id="whatsappShareBtn">
+                        <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> Share on WhatsApp
+                    </button>
+                    <button class="pop-up-action-btn" id="remindMeBtn">
+                        <i class="fa-regular fa-bell" style="color: var(--accent-magenta);"></i> Remind Me
+                    </button>
+                    <a href="https://docs.google.com" target="_blank" class="pop-up-action-btn" id="submitEntryBtn">
+                        <i class="fa-solid fa-pen-to-square" style="color: #ff47cc;"></i> Submit Entry
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="nrutya-footer">
+            <div class="footer-container">
+                <div class="footer-top-row">
+                    <div class="footer-info">
+                        <h2 class="footer-title">Nrutya Club</h2>
+                        <p class="footer-description">
+                            The official dance club of IISER Kolkata,<br>
+                            promoting creativity, teamwork and cultural appreciation.
+                        </p>
+                    </div>
+                    <div class="footer-socials">
+                        <span class="socials-label">Connect with us</span>
+                        <div class="social-icons-footer">
+                            <a href="https://www.instagram.com/nrutya_iiserk?igsh=MXBpNHg4eHZ2YzVzNQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon-link">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom-row">
+                    <p class="footer-copyright">
+                        &copy; 2026 NRUTYA-IISER Kolkata Dance Club. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+    <script src="../script/eventScr.js"></script>
+</body>
+</html>
