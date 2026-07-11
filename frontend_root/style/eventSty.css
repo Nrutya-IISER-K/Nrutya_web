@@ -712,8 +712,11 @@
 
     /* 5. Streamline the Pop-up Modal for small devices */
     .pop-up-modal-shell {
-        max-height: 95vh;
-        margin: 10px;
+        width: 92%; /* Forces consistent negative space on left and right edges */
+        max-width: 400px; /* Prevents the card from looking stretched on wide phones */
+        margin: auto; /* Centers the modal perfectly and removes the overflowing 10px margin */
+        max-height: 90vh; /* Ensures a gap at the top and bottom of the screen */
+        border-radius: 16px; /* Keeps the edges smooth */
     }
 
     .pop-up-media-gallery-sidebar {
@@ -722,7 +725,13 @@
     }
 
     .pop-up-modal-content-details {
-        padding: 20px 15px;
+        padding: 24px 20px; /* Bumps up the left/right and top/bottom inner spacing */
+    }
+ .pop-up-modal-dismiss-btn {
+        top: 12px;
+        right: 12px;
+        width: 30px;
+        height: 30px;
     }
 
     .pop-up-modal-headline {
