@@ -105,6 +105,16 @@ header {
     gap: 12px;
 }
 
+/* Removes default link styling and ensures smooth cursor interaction */
+.logo-link,
+.logo-link-full {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex; /* Keeps the internal items aligned if wrapping the whole area */
+    align-items: center; 
+}
+
 .logo-container {
     width: 44px;
     height: 44px;
