@@ -435,5 +435,38 @@ window.addEventListener('popstate', (e) => {
 history.replaceState({ directoryHistory: [], categoryIndex: currentCategoryIndex }, '');
 
 drawActiveDirectoryView();
+                    /* --- MOBILE SWIPE GESTURE CONTROLS (GALLERY TABS) --- */
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            function handleGallerySwipe() {
+                // Prevent swiping tabs if a photo/video lightbox is currently open
+                if (lightbox.classList.contains('active')) return;
+
+                const swipeThreshold = 50; 
+                
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swiped Left -> Move to Next Category Tab
+                    navigationDirectoryHistory = []; // Clear folder path
+                    let next = (currentCategoryIndex + 1) % filterButtons.length;
+                    filterButtons[next].click();
+                }
+                
+                if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swiped Right -> Move to Previous Category Tab
+                    navigationDirectoryHistory = []; // Clear folder path
+                    let prev = (currentCategoryIndex - 1 + filterButtons.length) % filterButtons.length;
+                    filterButtons[prev].click();
+                }
+            }
+
+            document.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            document.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleGallerySwipe();
+            }, { passive: true });
         });
         
