@@ -284,3 +284,39 @@ window.addEventListener('resize', () => {
     const currentActiveBtn = document.querySelector('.category-tab-btn.active');
     syncIndicatorPillPosition(currentActiveBtn);
 });
+
+/* --- MOBILE SWIPE GESTURE CONTROLS --- */
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleCategorySwipe() {
+    // Do not trigger tab changes if the event details modal is open
+    if (backdropModal.classList.contains('active-reveal')) return; 
+
+    const swipeThreshold = 50; // Minimum distance in pixels to count as a swipe
+    
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // Swiped Left -> Move to Next Category Tab
+        activeCategoryIndex = (activeCategoryIndex + 1) % currentCategories.length;
+        let targetBtn = document.querySelector(`.category-tab-btn[data-index="${activeCategoryIndex}"]`);
+        if (targetBtn) targetBtn.click();
+    }
+    
+    if (touchEndX > touchStartX + swipeThreshold) {
+        // Swiped Right -> Move to Previous Category Tab
+        activeCategoryIndex = (activeCategoryIndex - 1 + currentCategories.length) % currentCategories.length;
+        let targetBtn = document.querySelector(`.category-tab-btn[data-index="${activeCategoryIndex}"]`);
+        if (targetBtn) targetBtn.click();
+    }
+}
+
+// Listen for touch start anywhere on the document
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+// Listen for touch end anywhere on the document
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleCategorySwipe();
+}, { passive: true });
