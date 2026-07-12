@@ -97,17 +97,28 @@ const GALLERY_DATA = {
                 ]
             },
             interbatch: {
-                media: [
-                    { type: "image", title: "Duet Dance 2024", src: "https://drive.google.com/thumbnail?id=1ICj4xOxiW4GRky4SwG9g7_YOU7tsUAwL&sz=w1000", layout: "wide"},
-                    { type: "image", title: "TIME'S UP— Interbatch group 2026", src: "https://drive.google.com/thumbnail?id=1-qsgazs1gqn98NznPMGkONDY-s25sw2z&sz=w1000", layout: "wide"},
-                    { type: "image", title: "Group Dance 2024", src: "https://drive.google.com/thumbnail?id=1X-bSK-HPDDYvyVzDUThHE92SG6SbD_3K&sz=w1000", layout: "wide"},
-                    { type: "image", title: "Beauty", src: "https://drive.google.com/thumbnail?id=1jcn72401VYqYkcC79Pom1WsQ09YULC_z&sz=w1000", layout: "wide"},
-                    { type: "image", title: "Interbatch Group 2026", src: "https://drive.google.com/thumbnail?id=1Pyrt1MeAsUfkV0CiY_synh8z4nh1UXG5&sz=w1000", layout: "wide"},
-                    { type: "image", title: "Interbatch Duet 2026", src: "https://drive.google.com/thumbnail?id=1JTaJ_fPnDy2Xv_HEXgjFu1D5AGwO3DFn&sz=w1000", layout: "wide"},
-                    { type: "image", title: "Fusion Grace", src: "https://drive.google.com/thumbnail?id=1jC7Wa3sjgyoWB_R_A4qTQLRUjo6hUyTF&sz=w1000", layout: "wide"},
+                        folders:[
+                    {
+                        name: "Interbatch 2026",
+                        media:[
+                            { type: "image", title: "12'Oc — Interbatch group 25MS", src: "https://drive.google.com/thumbnail?id=1-qsgazs1gqn98NznPMGkONDY-s25sw2z&sz=w1000", layout: "wide"},
+                            { type: "image", title: "Group 21MS", src: "https://drive.google.com/thumbnail?id=1Pyrt1MeAsUfkV0CiY_synh8z4nh1UXG5&sz=w1000", layout: "wide"},
+                            { type: "image", title: "Duet 24MS", src: "https://drive.google.com/thumbnail?id=1JTaJ_fPnDy2Xv_HEXgjFu1D5AGwO3DFn&sz=w1000", layout: "wide"},
+                            { type: "image", title: "Duet 21MS", src: "https://drive.google.com/thumbnail?id=1jC7Wa3sjgyoWB_R_A4qTQLRUjo6hUyTF&sz=w1000", layout: "wide"}
 
-                     
+                        ]
+                    },
+                                    {
+                        name: "Interbatch 2025",
+                        media:[
+                            { type: "image", title: "Duet Dance", src: "https://drive.google.com/thumbnail?id=1ICj4xOxiW4GRky4SwG9g7_YOU7tsUAwL&sz=w1000", layout: "wide"},
+                            { type: "image", title: "Group Dance", src: "https://drive.google.com/thumbnail?id=1X-bSK-HPDDYvyVzDUThHE92SG6SbD_3K&sz=w1000", layout: "wide"}
+                        ]
+            },
+                media: [
+                    { type: "image", title: "Beauty", src: "https://drive.google.com/thumbnail?id=1jcn72401VYqYkcC79Pom1WsQ09YULC_z&sz=w1000", layout: "wide"},
                 ]
+            ]
             },
             workshop: {
                 folders: [
