@@ -108,17 +108,17 @@ const GALLERY_DATA = {
 
                         ]
                     },
-                                    {
+                    {
                         name: "Interbatch 2025",
                         media:[
                             { type: "image", title: "Duet Dance", src: "https://drive.google.com/thumbnail?id=1ICj4xOxiW4GRky4SwG9g7_YOU7tsUAwL&sz=w1000", layout: "wide"},
                             { type: "image", title: "Group Dance", src: "https://drive.google.com/thumbnail?id=1X-bSK-HPDDYvyVzDUThHE92SG6SbD_3K&sz=w1000", layout: "wide"}
                         ]
-            },
+                     }
+              ]
                 media: [
                     { type: "image", title: "Beauty", src: "https://drive.google.com/thumbnail?id=1jcn72401VYqYkcC79Pom1WsQ09YULC_z&sz=w1000", layout: "wide"},
                 ]
-            ]
             },
             workshop: {
                 folders: [
@@ -138,7 +138,7 @@ const GALLERY_DATA = {
                             { type: "image", title: "Semi-Classical Workshop by Subir Hazra", src: "https://drive.google.com/thumbnail?id=1n7tgH3FcZq0f18tp5g5DclI1hPbtCqra&sz=w1000", layout: "wide"}
                         ]
                     }
-                ],
+                ]
                 media: [
                     { type: "image", title: "Workshop 2023", src: "https://drive.google.com/thumbnail?id=1PsQGCQQUk4Nja9Hbllhc2X5vxoO4uSnC&sz=w1000",layout: "wide" }
                 ]
