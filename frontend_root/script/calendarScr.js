@@ -242,15 +242,10 @@
           });
           dayCell.appendChild(markersContainer);
 
-          // Wire hover interactive interface callbacks
-          setupCellHoverInteractions(dayCell, dayEvents[0]);
+          // Wire click interactive interface callbacks
+          setupCellClickInteractions(dayCell, dayEvents[0]);
 
-          // CLICK ON CALENDAR DAY CELL BOX TO REDIRECT USER TO EVENT PAGE
-          dayCell.addEventListener("click", () => {
-            if (dayEvents[0].link) {
-              window.location.href = dayEvents[0].link;
-            }
-          });
+          
         }
 
         calendarGrid.appendChild(dayCell);
@@ -258,7 +253,7 @@
     }
 
     /* --- HOVER POPUP MECHANICS CONTROL --- */
-    function setupCellHoverInteractions(cellElement, eventData) {
+    function setupCellClickInteractions(cellElement, eventData) {
       const img = document.getElementById("popupImg");
       const badge = document.getElementById("popupBadge");
       const title = document.getElementById("popupTitle");
@@ -294,9 +289,43 @@
         popup.classList.remove("visible");
       }
 
-      cellElement.addEventListener("mouseenter", openPopup);
-      cellElement.addEventListener("mousemove", (e) => positionPopup(e, cellElement));
-      cellElement.addEventListener("mouseleave", hidePopup);
+      let clickTimer = null;
+
+// Handle Single Click (Open Popup)
+cellElement.addEventListener("click", (e) => {
+  // Clear the timer so it doesn't fire multiple times
+  clearTimeout(clickTimer);
+  
+  // Wait 250ms to see if a second click happens
+  clickTimer = setTimeout(() => {
+    // If the popup is already open for this exact event, close it (toggle effect). 
+    // Otherwise, open it.
+    if (popup.classList.contains("visible") && title.textContent === eventData.title) {
+      hidePopup();
+    } else {
+      openPopup(e);
+    }
+  }, 250); 
+});
+
+// Handle Double Click (Redirect to Event Page)
+cellElement.addEventListener("dblclick", () => {
+  // Prevent the single click logic from running
+  clearTimeout(clickTimer);
+  
+  if (eventData.link) {
+    window.location.href = eventData.link;
+  }
+});
+
+/* --- GLOBAL CLICK TO CLOSE POPUP --- */
+document.addEventListener("click", (e) => {
+  // Close the popup if the click is outside the popup AND outside a day cell with an event
+  if (!e.target.closest(".day-cell.has-event") && !e.target.closest("#eventPopup")) {
+    popup.classList.remove("visible");
+  }
+});
+
       
       // Accessibility tracking support
       cellElement.addEventListener("focus", openPopup);
