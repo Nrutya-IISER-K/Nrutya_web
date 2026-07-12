@@ -104,7 +104,7 @@ const GALLERY_DATA = {
                             { type: "image", title: "12'Oc — Interbatch group 25MS", src: "https://drive.google.com/thumbnail?id=1-qsgazs1gqn98NznPMGkONDY-s25sw2z&sz=w1000", layout: "wide"},
                             { type: "image", title: "Group 21MS", src: "https://drive.google.com/thumbnail?id=1Pyrt1MeAsUfkV0CiY_synh8z4nh1UXG5&sz=w1000", layout: "wide"},
                             { type: "image", title: "Duet 24MS", src: "https://drive.google.com/thumbnail?id=1JTaJ_fPnDy2Xv_HEXgjFu1D5AGwO3DFn&sz=w1000", layout: "wide"},
-                            { type: "image", title: "Duet 21MS", src: "https://drive.google.com/thumbnail?id=1jC7Wa3sjgyoWB_R_A4qTQLRUjo6hUyTF&sz=w1000", layout: "wide"}
+                            { type: "image", title: "Duet 25MS", src: "https://drive.google.com/thumbnail?id=1jC7Wa3sjgyoWB_R_A4qTQLRUjo6hUyTF&sz=w1000", layout: "wide"}
 
                         ]
                     },
@@ -115,7 +115,7 @@ const GALLERY_DATA = {
                             { type: "image", title: "Group Dance", src: "https://drive.google.com/thumbnail?id=1X-bSK-HPDDYvyVzDUThHE92SG6SbD_3K&sz=w1000", layout: "wide"}
                         ]
                      }
-              ]
+              ],
                 media: [
                     { type: "image", title: "Beauty", src: "https://drive.google.com/thumbnail?id=1jcn72401VYqYkcC79Pom1WsQ09YULC_z&sz=w1000", layout: "wide"},
                 ]
@@ -138,7 +138,7 @@ const GALLERY_DATA = {
                             { type: "image", title: "Semi-Classical Workshop by Subir Hazra", src: "https://drive.google.com/thumbnail?id=1n7tgH3FcZq0f18tp5g5DclI1hPbtCqra&sz=w1000", layout: "wide"}
                         ]
                     }
-                ]
+                ],
                 media: [
                     { type: "image", title: "Workshop 2023", src: "https://drive.google.com/thumbnail?id=1PsQGCQQUk4Nja9Hbllhc2X5vxoO4uSnC&sz=w1000",layout: "wide" }
                 ]
