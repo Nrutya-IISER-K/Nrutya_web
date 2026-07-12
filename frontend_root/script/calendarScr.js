@@ -442,4 +442,36 @@ document.addEventListener("click", (e) => {
       renderFeaturedCurrentMonthList();
     });
 
+/* --- MOBILE SWIPE GESTURE CONTROLS --- */
+    const calendarShell = document.querySelector('.calendar-shell');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function handleSwipe() {
+      const swipeThreshold = 50; // Minimum distance in pixels to count as a swipe
+      
+      if (touchEndX < touchStartX - swipeThreshold) {
+        // Swiped Left -> Go to Next Month
+        popup.classList.remove("visible");
+        viewDate.setMonth(viewDate.getMonth() + 1);
+        renderCalendar();
+      }
+      
+      if (touchEndX > touchStartX + swipeThreshold) {
+        // Swiped Right -> Go to Previous Month
+        popup.classList.remove("visible");
+        viewDate.setMonth(viewDate.getMonth() - 1);
+        renderCalendar();
+      }
+    }
+
+    calendarShell.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    calendarShell.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
            // ==========================================
