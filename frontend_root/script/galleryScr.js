@@ -177,6 +177,28 @@ const GALLERY_DATA = {
             let currentCategoryIndex = 0;
             let navigationDirectoryHistory = []; 
 
+            // NEW: Handle browser back/forward buttons and phone swipe gestures
+window.addEventListener('popstate', (e) => {
+    if (e.state) {
+        // Restore the history array and category index from the saved state
+        navigationDirectoryHistory = e.state.directoryHistory ? [...e.state.directoryHistory] : [];
+        
+        // Update the active category button if the user went back to a different tab
+        if (currentCategoryIndex !== e.state.categoryIndex) {
+            currentCategoryIndex = e.state.categoryIndex;
+            filterButtons.forEach(b => b.classList.remove('active'));
+            if (filterButtons[currentCategoryIndex]) {
+                filterButtons[currentCategoryIndex].classList.add('active');
+            }
+        }
+    } else {
+        // If there's no state (e.g., initial page load state), clear the folder history
+        navigationDirectoryHistory = [];
+    }
+    
+    drawActiveDirectoryView();
+});
+
             function extractAllMediaRecursively(node, currentFolderName = "Gallery Root") {
                 let items = [];
                 if (!node) return items;
@@ -260,9 +282,16 @@ const GALLERY_DATA = {
                             <div class="folder-count">Open Folder</div>
                         `;
                         card.addEventListener('click', () => {
-                            navigationDirectoryHistory.push(subFolder.name);
-                            drawActiveDirectoryView();
-                        });
+    navigationDirectoryHistory.push(subFolder.name);
+    
+    // NEW: Save the new folder path to the browser's history
+    history.pushState(
+        { directoryHistory: [...navigationDirectoryHistory], categoryIndex: currentCategoryIndex }, 
+        ''
+    );
+    
+    drawActiveDirectoryView();
+});
                         mainGrid.appendChild(card);
                     });
                 }
@@ -344,15 +373,22 @@ const GALLERY_DATA = {
             
 
             filterButtons.forEach((btn, index) => {
-                btn.addEventListener('click', () => {
-                    navigationDirectoryHistory = []; 
-                    filterButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentCategoryIndex = index;
-                    btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                    drawActiveDirectoryView();
-                });
-            });
+    btn.addEventListener('click', () => {
+        navigationDirectoryHistory = []; 
+        
+        // NEW: Save the base category state to browser history
+        history.pushState(
+            { directoryHistory: [], categoryIndex: index }, 
+            ''
+        );
+
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategoryIndex = index;
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        drawActiveDirectoryView();
+    });
+});
 
             document.addEventListener('keydown', (e) => {
                 if (lightbox.classList.contains('active')) return;
@@ -369,9 +405,9 @@ const GALLERY_DATA = {
             });
 
             backBtn.addEventListener('click', () => {
-                navigationDirectoryHistory.pop();
-                drawActiveDirectoryView();
-            });
+    // NEW: Let the browser handle the back navigation (this triggers 'popstate')
+    history.back();
+});
 
             const closeLightbox = () => {
                 lightbox.classList.remove('active');
@@ -384,6 +420,9 @@ const GALLERY_DATA = {
             lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-            drawActiveDirectoryView();
+           // NEW: Set the initial state when the page first loads
+history.replaceState({ directoryHistory: [], categoryIndex: currentCategoryIndex }, '');
+
+drawActiveDirectoryView();
         });
         
