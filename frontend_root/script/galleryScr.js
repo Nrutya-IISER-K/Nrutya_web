@@ -166,7 +166,15 @@ const GALLERY_DATA = {
                             { type: "image", title: "Group Dance(Kalashnikov) Winners", src: "https://drive.google.com/thumbnail?id=1xU3GBY64RTLDlTrcDCrlcyM6kdBmr8aC&sz=w1000",layout: "wide" },
                             { type: "image", title: "The Crew", src: "https://drive.google.com/thumbnail?id=1vo6KG0qnUFz5V_pVhBEsH02p5DykJv_0&sz=w1000",layout: "wide" }
                         ]
-                    }
+                    },
+                    {
+                                name: "Logo Of Nrutya",
+                        media: [
+                            { type: "image", title: "Duet Dance Winners", src: "https://drive.google.com/thumbnail?id=1CZxuZ9XPYMb-BxLxY9J1uSO6NocXLPjb&sz=w1000",layout: "wide" },
+                            { type: "image", title: "Group Dance(Kalashnikov) Winners", src: "https://drive.google.com/thumbnail?id=1xU3GBY64RTLDlTrcDCrlcyM6kdBmr8aC&sz=w1000",layout: "wide" },
+                            { type: "image", title: "The Crew", src: "https://drive.google.com/thumbnail?id=1vo6KG0qnUFz5V_pVhBEsH02p5DykJv_0&sz=w1000",layout: "wide" }
+                        ]
+                    }                                        
                 ]
             }
         };
