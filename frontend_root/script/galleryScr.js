@@ -173,7 +173,8 @@ const GALLERY_DATA = {
                             { type: "image", title: "Dark Background", src: "https://drive.google.com/thumbnail?id=1krYXLjeftuaVcTonx9kVR3_J4TnJlGbn&sz=w1000",layout: "wide" },
                             { type: "image", title: "Bright Background", src: "https://drive.google.com/thumbnail?id=1vVDGAvzOmIyA2kU7R_gzO89_tZgKW3Or&sz=w1000",layout: "wide" },
                             { type: "image", title: "Black Png", src: "https://drive.google.com/thumbnail?id=1ZFhiuVEOgJD0y1w6AwQFqtqGmfsGp86A&sz=w1000",layout: "wide" },
-                            { type: "image", title: "Black Png", src: "https://drive.google.com/thumbnail?id=1Y7y7c2wA7EsrAGrlk8aFju_at7wrwUm_&sz=w1000",layout: "wide" }
+                            { type: "image", title: "Black Png", src: "https://drive.google.com/thumbnail?id=1Y7y7c2wA7EsrAGrlk8aFju_at7wrwUm_&sz=w1000",layout: "wide" },
+                            { type: "image", title: "Golden Png", src: "https://drive.google.com/thumbnail?id=1_fJGF1nYJzgtabzfZ2sN0_j5TaOjej_F&sz=w1000",layout: "wide" }
                         ]
                     }                                        
                 ]
