@@ -445,38 +445,57 @@ window.addEventListener('popstate', (e) => {
 history.replaceState({ directoryHistory: [], categoryIndex: currentCategoryIndex }, '');
 
 drawActiveDirectoryView();
-                    /* --- MOBILE SWIPE GESTURE CONTROLS (GALLERY TABS) --- */
-            let touchStartX = 0;
-            let touchEndX = 0;
+                   /* --- MOBILE SWIPE GESTURE CONTROLS (GALLERY TABS) --- */
+let touchStartX = 0;
+let touchStartY = 0; 
+let touchEndX = 0;
+let touchEndY = 0;   
 
-            function handleGallerySwipe() {
-                // Prevent swiping tabs if a photo/video lightbox is currently open
-                if (lightbox.classList.contains('active')) return;
+function handleGallerySwipe() {
+    // Prevent swiping tabs if a photo/video lightbox is currently open
+    if (lightbox.classList.contains('active')) return;
 
-                const swipeThreshold = 50; 
-                
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    // Swiped Left -> Move to Next Category Tab
-                    navigationDirectoryHistory = []; // Clear folder path
-                    let next = (currentCategoryIndex + 1) % filterButtons.length;
-                    filterButtons[next].click();
-                }
-                
-                if (touchEndX > touchStartX + swipeThreshold) {
-                    // Swiped Right -> Move to Previous Category Tab
-                    navigationDirectoryHistory = []; // Clear folder path
-                    let prev = (currentCategoryIndex - 1 + filterButtons.length) % filterButtons.length;
-                    filterButtons[prev].click();
-                }
-            }
+    const swipeThreshold = 50; // Minimum pixels needed to trigger a swipe
+    
+    // Calculate the distance moved on both axes
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
 
-            document.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
+    // STRICT HORIZONTAL CHECK: 
+    // The swipe must be predominantly horizontal. 
+    // Multiplying deltaY by 1.5 ensures sloppy vertical scrolls are ignored.
+    if (Math.abs(deltaX) > Math.abs(deltaY) * 1.5 && Math.abs(deltaX) > swipeThreshold) {
+        
+        if (deltaX < 0) {
+            // Swiped Left -> Move to Next Category Tab
+            navigationDirectoryHistory = []; // Clear folder path
+            let next = (currentCategoryIndex + 1) % filterButtons.length;
+            filterButtons[next].click();
+        } else {
+            // Swiped Right -> Move to Previous Category Tab
+            navigationDirectoryHistory = []; // Clear folder path
+            let prev = (currentCategoryIndex - 1 + filterButtons.length) % filterButtons.length;
+            filterButtons[prev].click();
+        }
+    }
+    // Note: If the swipe is mostly vertical, this function does nothing.
+    // The browser's default behavior will take over and scroll the photos up or down.
+}
 
-            document.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleGallerySwipe();
-            }, { passive: true });
+// We keep { passive: true } so the browser knows we won't block its default scrolling
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY; 
+}, { passive: true });
+
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY; 
+    handleGallerySwipe();
+}, { passive: true });
+
+
+
+
         });
         
