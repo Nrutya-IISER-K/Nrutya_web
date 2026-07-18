@@ -14,8 +14,7 @@ const eventsRegistry = [
         details: "The most successful and highly anticipated cultural performance celebration on the campus timeline. It operates as an inclusive open air arena setting allowing community members to sync rhythms and jam collectively.",
         formUrl: "https://forms.gle/9g8vbm33Y8ShrN4f8",
         images: [
-            "../images/Lasya_3.0/Las_poster_final.jpg",
-            "../images/Interbatch Group 2026.jpg"
+            "../images/Lasya_3.0/Las_poster_final.jpg"
         ]
     }
 ];
