@@ -9,7 +9,7 @@
         img: "../images/Lasya_3.0/Las_poster_final.jpg" /* Empty String for testing Glowing Solid Colors Fallback */
       },
       {
-        date: "2026-08-20",
+        date: "2026-08-19",
         title: "Freshers (Welcome to Nrutya)",
         type: "other",
         desc: "Learn dynamic moves, master fresh choreography, and elevate your style with an energetic workshop.",
@@ -17,7 +17,7 @@
         img: "" /* Empty String for testing Glowing Solid Colors Fallback */
       },
       {
-        date: "2026-08-22",
+        date: "2026-08-21",
         title: "Beat Breakers (Western Dance Workshop) — Day 1",
         type: "workshop",
         desc: "Learn dynamic moves, master fresh choreography, and elevate your style with an energetic workshop.",
@@ -25,7 +25,15 @@
         img: ""
       },
       {
-        date: "2026-08-23",
+        date: "2026-08-22",
+        title: "Beat Breakers (Western Dance Workshop) — Day 2",
+        type: "workshop",
+        desc: "Learn dynamic moves, master fresh choreography, and elevate your style with an energetic workshop.",
+        link: "../pages/event.html", 
+        img: ""
+      },
+      {
+        date: "2026-08-28",
         title: "Beat Breakers (Western Dance Workshop) — Day 2",
         type: "workshop",
         desc: "Learn dynamic moves, master fresh choreography, and elevate your style with an energetic workshop.",
@@ -34,14 +42,6 @@
       },
       {
         date: "2026-08-29",
-        title: "Beat Breakers (Western Dance Workshop) — Day 2",
-        type: "workshop",
-        desc: "Learn dynamic moves, master fresh choreography, and elevate your style with an energetic workshop.",
-        link: "../pages/event.html", 
-        img: ""
-      },
-      {
-        date: "2026-08-30",
         title: "Beat Breakers (Western Dance Workshop) — Day 4",
         type: "workshop",
         desc: "Learn dynamic moves, master fresh choreography, and elevate your style with an energetic workshop.",
