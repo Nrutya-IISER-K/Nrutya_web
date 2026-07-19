@@ -241,3 +241,75 @@
                 text-align: center;
             }
         }
+ /* --- NEW: Inventory Request Button Styles --- */
+.inventory-access-btn-wrapper {
+    margin-top: -25px;
+    margin-bottom: 45px;
+}
+
+.btn-inventory-request {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(189, 43, 143, 0.15);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-magenta);
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(189, 43, 143, 0.2);
+}
+
+.btn-inventory-request:hover {
+    background: var(--accent-magenta);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 71, 204, 0.4);
+    color: #ffffff;
+}
+
+/* --- UPDATED: Inventory Item Link Fixes --- */
+/* This overrides the default browser link styles so the text doesn't turn blue/underlined */
+a.inventory-item {
+    text-decoration: none;
+    cursor: pointer;
+    display: flex; /* Ensures the bullet and text align perfectly as they did before */
+}
+
+/* --- RESPONSIVE ADJUSTMENTS FOR INVENTORY BUTTON & GRID --- */
+@media (max-width: 768px) {
+    /* Adjust the wrapper spacing for smaller screens */
+    .inventory-access-btn-wrapper {
+        margin-top: -15px;
+        margin-bottom: 35px;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    /* Make the button full-width and easier to tap on phones */
+    .btn-inventory-request {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+        font-size: 0.95rem;
+    }
+
+    /* Force the inventory grid into a single column on mobile */
+    .inventory-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    /* Reduce padding inside the cards to save screen space */
+    .inventory-category-card {
+        padding: 20px;
+    }
+    
+    .category-header {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+}
